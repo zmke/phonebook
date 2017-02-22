@@ -8,6 +8,8 @@
 
 #ifdef OPT
 #define OUT_FILE "opt.txt"
+#elif defined(BST)
+#define OUT_FILE "bst.txt"
 #else
 #define OUT_FILE "orig.txt"
 #endif
@@ -70,18 +72,30 @@ int main(int argc, char *argv[])
 
     /* the givn last name to find */
     char input[MAX_LAST_NAME_SIZE] = "zyxel";
+
+#ifdef BST
+    bst *root = list_to_BST(e);
+    assert(findName(input, root) &&
+           "Did you implement findName() in " IMPL "?");
+    assert(0 == strcmp(findName(input, root)->lastName, "zyxel"));
+#else
     e = pHead;
 
     assert(findName(input, e) &&
            "Did you implement findName() in " IMPL "?");
     assert(0 == strcmp(findName(input, e)->lastName, "zyxel"));
+#endif
 
 #if defined(__GNUC__)
     __builtin___clear_cache((char *) pHead, (char *) pHead + sizeof(entry));
 #endif
     /* compute the execution time */
     clock_gettime(CLOCK_REALTIME, &start);
+#ifdef BST
+    findName(input, root);
+#else
     findName(input, e);
+#endif
     clock_gettime(CLOCK_REALTIME, &end);
     cpu_time2 = diff_in_second(start, end);
 
