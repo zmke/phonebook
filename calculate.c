@@ -44,7 +44,7 @@ int main(void)
         opt_sum_f += opt_f;
     }
 
-    //bst
+    /*bst*/
     fp = fopen("bst.txt", "r");
     if (!fp) {
         fp = fopen("opt.txt", "r");
@@ -63,7 +63,6 @@ int main(void)
         fscanf(fp, "%s %s %lf %lf\n", append, find, &bst_a, &bst_f);
         bst_sum_a += bst_a;
         bst_sum_f += bst_f;
-        printf("%lf\n", bst_sum_f);
     }
 
     fprintf(output, "append() %lf %lf %lf\n",orig_sum_a / 100.0, opt_sum_a / 100.0, bst_sum_a / 100.0);

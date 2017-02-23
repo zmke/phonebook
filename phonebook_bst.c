@@ -26,7 +26,6 @@ entry *append(char lastName[], entry *e)
     e = e->pNext;
     strcpy(e->lastName, lastName);
     e->pNext = NULL;
-
     return e;
 }
 
@@ -50,19 +49,7 @@ bst *build(entry **pHead, int listLen)
     bst *root = (bst *) malloc(sizeof(bst));
     strcpy(root->lastName, (*pHead)->lastName);
     root->left = left;
-
     *pHead = (*pHead)->pNext;
-
     root->right = build(pHead, listLen-listLen/2-1);
     return root;
 }
-
-
-
-
-
-
-
-
-
-
