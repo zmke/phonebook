@@ -6,6 +6,7 @@
 /* TODO: After modifying the original version, uncomment the following
  * line to set OPT properly */
 #define BST 1
+
 typedef struct __ENTRY_DETAIL {
     char firstName[16];
     char email[16];
@@ -34,4 +35,6 @@ bst *findName(char lastName[], bst *root);
 entry *append(char lastName[], entry *e);
 bst *list_to_BST(entry *pHead);
 bst *build(entry **head, int listLen);
+void releaseTree(bst *root);
+
 #endif

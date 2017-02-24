@@ -12,10 +12,7 @@ bst *findName(char lastName[], bst* root)
         int val = strcasecmp(lastName, temp->lastName);
         if(val == 0)
             return temp;
-        else if(val < 0)
-            temp = temp->left;
-        else
-            temp = temp->right;
+        temp = (val < 0) ? temp->left : temp->right;
     }
     return NULL;
 }
@@ -52,4 +49,12 @@ bst *build(entry **pHead, int listLen)
     *pHead = (*pHead)->pNext;
     root->right = build(pHead, listLen-listLen/2-1);
     return root;
+}
+
+void releaseTree(bst *root)
+{
+    if(root == NULL) return;
+    releaseTree(root->left);
+    releaseTree(root->right);
+    free(root);
 }
