@@ -110,8 +110,11 @@ int main(int argc, char *argv[])
     releaseTree(root);
 #endif
 
-    if (pHead->pNext) free(pHead->pNext);
-    free(pHead);
+    while(pHead) {
+        entry *tmp = pHead;
+        pHead = pHead->pNext;
+        free(tmp);
+    }
 
     return 0;
 }
